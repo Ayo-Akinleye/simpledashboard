@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
     const [fullname, setFullname] = useState("")
@@ -6,6 +7,8 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("");
+
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,11 +23,12 @@ const Signup = () => {
             return;
         }
 
-        // setError("")
+        // After successful 
         setFullname("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        navigate('/signin')
     };
 
 
@@ -70,8 +74,10 @@ const Signup = () => {
                             type='password'
                             placeholder='********'
                             value={password}
-                            onChange={(e) => {setPassword(e.target.value);
-                            if (error) setError("");}}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                if (error) setError("");
+                            }}
                             className='border border-gray-100 rounded px-2 placeholder-gray-400
                                         focus:outline-none focus:border-black'
                         />
@@ -99,6 +105,7 @@ const Signup = () => {
                     </button>
                 </form>
             </div>
+            <p className='text-center mt-2'>Already have an account? <Link to="/signin" className=' text-blue-500 underline cursor-pointer'>Sign in</Link></p>
         </div>
     )
 }

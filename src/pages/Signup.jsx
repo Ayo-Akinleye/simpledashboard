@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SubmitButton from '../Components/SubmitButton';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
@@ -81,7 +82,6 @@ const Signup = () => {
                             className='border border-gray-100 rounded px-2 placeholder-gray-400
                                         focus:outline-none focus:border-black'
                         />
-
                     </div>
 
                     <div className='flex gap-1'>
@@ -98,14 +98,13 @@ const Signup = () => {
 
                     {error ? <p className="text-red-500 text-sm">{error}</p> : null}
 
-                    <button
-                        type='submit'
-                        className='border rounded-md p-1.5 cursor-pointer w- bg-black text-white hover:animate-pulse'>
-                        SUBMIT
-                    </button>
+                    <SubmitButton text="Sign up" type="submit" />
                 </form>
             </div>
-            <p className='text-center mt-2'>Already have an account? <Link to="/signin" className=' text-blue-500 underline cursor-pointer'>Sign in</Link></p>
+            <p className='text-center mt-2'>
+                Already have an account?
+                <Link to="/signin" className=' text-blue-500 underline cursor-pointer'>Sign in</Link>
+            </p>
         </div>
     )
 }

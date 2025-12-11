@@ -12,7 +12,27 @@ const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedEmail = (storedUser.email || "").trim().toLowerCase();
+    const inputEmail = (email || "").trim().toLowerCase();
 
+    if (!storedUser) {
+      setError("No account found. Please sign up first");
+      return;
+    }
+
+    if (inputEmail !== storedEmail) {
+      setError("No account found. Please sign up first");
+      return;
+    }
+
+    if (password !== storedUser.password) {
+      setError("Incorrect password");
+      return;
+    }
+
+    setError("")
+    alert("Log in successful")
     navigate("/dashboard")
   };
 

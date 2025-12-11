@@ -24,11 +24,38 @@ const Signup = () => {
             return;
         }
 
+        // Localstorage
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        const cleanEmail = email.trim().toLowerCase();
+
+        if (storedUser) {
+            if (userData.email === storedUser.email) {
+                setError("Email already assigned to an account!!. ")
+            }
+
+            // setError("Account already exists. Kindly sign in. ");
+            // return;
+        }
+
+        if (userData.email === storedUser.email) {
+            setError("Email already assigned to an account!!. ")
+        }
+
+        const userData = {
+            fullname,
+            email: cleanEmail,
+            password,
+        };
+
+        localStorage.setItem("user", JSON.stringify(userData));
+
+
         // After successful 
         setFullname("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        alert("Sign up successful. You'll be directed to login")
         navigate('/signin')
     };
 

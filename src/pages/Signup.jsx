@@ -29,8 +29,9 @@ const Signup = () => {
         const cleanEmail = email.trim().toLowerCase();
 
         if (storedUser) {
-            if (userData.email === storedUser.email) {
-                setError("Email already assigned to an account!!. ")
+            if (cleanEmail === storedUser.email) {
+                setError("Email already assigned to an account!!. ");
+                return;
             }
 
             // setError("Account already exists. Kindly sign in. ");
